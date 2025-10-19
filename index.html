@@ -14,7 +14,7 @@
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
     a{color:var(--brand);text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:20px}
-    header.hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35)), url('assets/fotos/Header2.jpeg') center/cover no-repeat; color:#fff; min-height:62vh; display:flex; align-items:center}
+    header.hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.40)), url('assets/fotos/Header2.jpeg') center/cover no-repeat; color:#fff; min-height:70vh; display:flex; align-items:center}
     .hero-content{padding:32px}
     .badge{display:inline-block;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px;backdrop-filter: blur(6px);}
     h1{font-size:40px;margin:10px 0 8px}
@@ -44,27 +44,22 @@
     .lightbox img{max-width:92vw;max-height:86vh;border-radius:12px}
     .lightbox.active{display:flex}
 
-    /* Calendario */
-    .calendar{--accent: var(--brand); background:#fff;border-radius:16px;padding:16px;border:1px solid #eee}
-    .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-    .dow{font-weight:700;text-align:center;font-size:12px;opacity:.8}
-    .day{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid #eee;background:#fafafa;font-weight:600;cursor:pointer}
-    .day.muted{opacity:.45}
-    .day.unavailable{background:#ffe9e7;border-color:#ffd3ce;color:#9a4a40;cursor:not-allowed}
-    .day.selected{outline:3px solid var(--brand-2)}
-
     iframe.map{width:100%;height:360px;border:0;border-radius:14px}
 
     footer{padding:32px 20px;text-align:center;color:#666}
     .note{font-size:13px;color:#666}
+
+    /* Barra fija de acción en mobile */
+    .cta-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--brand);padding:10px;display:flex;gap:8px;justify-content:center;z-index:60}
+    .cta-fixed a{background:#fff;border-radius:12px;padding:10px 14px;font-weight:700}
+    @media(min-width:800px){.cta-fixed{display:none}}
   </style>
 </head>
 <body>
   <header class="hero">
     <div class="container hero-content">
       <span class="badge">Alquiler temporario · Lago Hermoso</span>
-      <h1>Cabaña de diseño en Lago Hermoso, San Martin de los Andes</h1>
+      <h1>Cabaña de diseño en Lago Hermoso, San Martín de los Andes</h1>
       <p class="sub">2 cuartos · 1 baño · hasta 6 huéspedes · calefacción central y estufa Tromen · energía solar, gas e internet incluidos</p>
       <div class="cta">
         <a class="btn" href="#contacto">Consultar disponibilidad</a>
@@ -84,8 +79,8 @@
             <li>2 dormitorios · 1 baño</li>
             <li>Capacidad para 6 personas</li>
             <li>Living-comedor con cocina integrada</li>
-            <li>Ropa Blanca</li>
-            <li>Cortinas Roller BlackOut</li>
+            <li>Ropa blanca</li>
+            <li>Cortinas roller blackout</li>
           </ul>
         </div>
         <div class="card">
@@ -101,7 +96,7 @@
         </div>
         <div class="card">
           <h2>Reglas & notas</h2>
-          <p>No fumar en interiores. No se permiten Mascotas.</p>
+          <p>No fumar en interiores. No se permiten mascotas.</p>
           <p class="note">Política de cancelación flexible: reprogramación sujeta a disponibilidad.</p>
         </div>
       </div>
@@ -110,7 +105,6 @@
     <!-- Galería -->
     <section id="galeria" class="section">
       <h2>Galería</h2>
-      <p class="note">Reemplazá las imágenes por las tuyas (GitHub → Upload files). Se admiten JPG/PNG/WebP.</p>
       <div class="gallery" id="gallery">
         <img src='assets/fotos/WhatsApp%20Image%202025-10-11%20at%2011.14.03%20AM.jpeg' alt='Vista living' />
         <img src='assets/fotos/WhatsApp%20Image%202025-10-11%20at%2011.14.04%20AM%20(1).jpeg' alt='Dormitorio principal' />
@@ -131,7 +125,7 @@
           <h2>Calendario de disponibilidad</h2>
           <iframe 
             src="https://calendar.google.com/calendar/embed?src=85e6e40a53531ee813309a64615fcc84530ad17460c0c71e2c4bb1dde3873f2d%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" 
-            style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
+            style="border:0; border-radius:14px;" width="100%" height="550" frameborder="0" scrolling="no">
           </iframe>
         </div>
         <div class="card">
@@ -150,7 +144,6 @@
       <div class="card">
         <h2>Ubicación</h2>
         <p>Lago Hermoso, Neuquén — Patagonia Argentina.</p>
-        <!-- Si tenés el embed exacto de la cabaña, reemplazá el src por el de Google Maps Embed. -->
         <iframe 
           class="map"
           src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1695.7752980010368!2d-71.45514431552334!3d-40.37924763944046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDIyJzQ1LjMiUyA3McKwMjcnMTUuNCJX!5e1!3m2!1ses!2sar!4v1760888837192!5m2!1ses!2sar" 
@@ -161,6 +154,7 @@
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+        <p class="note"><a href="https://maps.app.goo.gl/juPcrsBRiJkdFRBM6" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
       </div>
     </section>
 
@@ -170,11 +164,10 @@
         <div class="card">
           <h2>Contacto</h2>
           <form id="contactForm" action="https://formspree.io/f/TU_FORM_ID" method="POST" class="form">
-            <!-- Reemplazá TU_FORM_ID con tu id de Formspree o usa Netlify/FormSubmit. -->
             <div style="display:grid;gap:10px">
               <input required name="nombre" placeholder="Nombre y apellido" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
               <input required type="email" name="email" placeholder="Email" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
-              <input name="telefono" placeholder="Teléfono (opcional)" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+              <input name="whatsapp" placeholder="WhatsApp (opcional)" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
                 <input type="date" name="checkin" placeholder="Check-in" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
                 <input type="date" name="checkout" placeholder="Check-out" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
@@ -188,9 +181,9 @@
           <p class="note">También podés escribir a <a href="mailto:reservas@tucabana.com">reservas@tucabana.com</a>.</p>
         </div>
         <div class="card">
-          <h2>Tarifas & estadias</h2>
+          <h2>Tarifas & estancias</h2>
           <ul>
-            <li>Temporada baja: consultar</li>
+            <li>Temporada baja: desde — consultar</li>
             <li>Temporada alta y feriados: consultar</li>
             <li>Estadía mínima sugerida: 2 noches</li>
           </ul>
@@ -206,6 +199,12 @@
       <div class="note">Sitio estático hospedado en Vercel. Hecho con ❤.</div>
     </div>
   </footer>
+
+  <!-- CTA fija (mobile) -->
+  <div class="cta-fixed">
+    <a href="#contacto">Consultar</a>
+    <a href="https://wa.me/54911XXXXXXX?text=Consulta%20Caba%C3%B1a%20Lago%20Hermoso" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 
   <!-- JSON-LD para SEO (VacationRental) -->
   <script type="application/ld+json">
@@ -239,100 +238,12 @@
     });
     lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 
-    // ----- Calendario de disponibilidad (vanilla JS) -----
-    // Editá estas fechas ocupadas (YYYY-MM-DD). Podés repetir meses/años.
-    const UNAVAILABLE = [
-      // Ejemplos:
-      '2025-12-24','2025-12-25','2025-12-31','2026-01-01',
-      // Agregá tus reservas confirmadas aquí
-    ];
-
-    // Normaliza array a set para búsqueda O(1)
-    const unavailableSet = new Set(UNAVAILABLE);
-
-    // Render de calendario por mes
-    const calRoot = document.getElementById('calendar');
-    const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-
-    let view = new Date(); // mes actual
-    view.setDate(1);
-
-    function renderCalendar(){
-      calRoot.innerHTML = '';
-      const header = document.createElement('div');
-      header.className = 'cal-header';
-
-      const prevBtn = document.createElement('button');
-      prevBtn.className = 'btn secondary';
-      prevBtn.textContent = '←';
-      prevBtn.onclick = () => { view.setMonth(view.getMonth()-1); renderCalendar(); };
-
-      const nextBtn = document.createElement('button');
-      nextBtn.className = 'btn secondary';
-      nextBtn.textContent = '→';
-      nextBtn.onclick = () => { view.setMonth(view.getMonth()+1); renderCalendar(); };
-
-      const title = document.createElement('div');
-      title.style.fontWeight = '700';
-      title.textContent = `${MONTHS_ES[view.getMonth()]} ${view.getFullYear()}`;
-
-      header.append(prevBtn,title,nextBtn);
-      calRoot.append(header);
-
-      const grid = document.createElement('div');
-      grid.className = 'cal-grid';
-
-      const DOW = ['L','M','M','J','V','S','D'];
-      DOW.forEach(d => { const el = document.createElement('div'); el.className='dow'; el.textContent=d; grid.append(el); });
-
-      // primer día del mes y offset (lunes como primer día)
-      const firstDay = new Date(view.getFullYear(), view.getMonth(), 1);
-      let start = firstDay.getDay(); // 0=Domingo ... 6=Sábado
-      // Ajuste para que la semana empiece en Lunes
-      start = (start === 0) ? 6 : start - 1;
-
-      const daysInMonth = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
-      const prevMonthDays = new Date(view.getFullYear(), view.getMonth(), 0).getDate();
-
-      // Días del mes anterior (muted)
-      for(let i=start-1;i>=0;i--){
-        const d = document.createElement('div');
-        d.className='day muted';
-        d.textContent = (prevMonthDays - i);
-        grid.append(d);
-      }
-      // Días del mes actual
-      for(let d=1; d<=daysInMonth; d++){
-        const date = new Date(view.getFullYear(), view.getMonth(), d);
-        const iso = date.toISOString().slice(0,10);
-        const cell = document.createElement('div');
-        cell.className='day';
-        if(unavailableSet.has(iso)) cell.classList.add('unavailable');
-        cell.textContent = d;
-        grid.append(cell);
-      }
-      // Completar con días del próximo mes hasta múltiplo de 7
-      const totalCells = grid.children.length;
-      const remainder = totalCells % 7;
-      if(remainder !== 0){
-        for(let i=1;i<=7-remainder;i++){
-          const d = document.createElement('div');
-          d.className='day muted';
-          d.textContent = i;
-          grid.append(d);
-        }
-      }
-
-      calRoot.append(grid);
-    }
-
-    renderCalendar();
+    // (El calendario interno ha sido removido para evitar duplicados; solo queda Google Calendar embed)
 
     // ----- Envío de formulario (mensaje s/éxito) -----
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMsg');
     form.addEventListener('submit', async (e) => {
-      // Si usás Formspree, no hace falta JS; esto es para feedback suave.
       e.preventDefault();
       const fd = new FormData(form);
       try{
