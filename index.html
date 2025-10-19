@@ -7,102 +7,97 @@
   <meta name="description" content="Cabaña de diseño en Lago Hermoso, Neuquén. 2 cuartos, 1 baño, hasta 6 personas. Calefacción central, servicios luz, gas e internet incluidos."/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     :root { --bg:#f6f5f3; --text:#1c1c1c; --brand:#5c3d2e; --brand-2:#936b5a; --card:#ffffff; }
+
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
     a{color:var(--brand);text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:20px}
-    header.hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.40)), url('assets/fotos/Header2.jpeg') center/cover no-repeat; color:#fff; min-height:70vh; display:flex; align-items:center}
+
+    /* Hero */
+    header.hero{
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.40)),
+        url('assets/fotos/Header2.jpeg') center/cover no-repeat;
+      color:#fff; min-height:70vh; display:flex; align-items:center
+    }
     .hero-content{padding:32px}
-    .badge{display:inline-block;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px;backdrop-filter: blur(6px);}
+    .badge{display:inline-block;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px;backdrop-filter:blur(6px)}
     h1{font-size:40px;margin:10px 0 8px}
     .sub{opacity:.95;font-size:18px}
     .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{background:#fff;color:#000;padding:12px 16px;border-radius:12px;font-weight:600;border:2px solid transparent;transition:.2s}
+    .btn{background:#fff;color:#000;padding:12px 16px;border-radius:12px;font-weight:600;border:2px solid transparent;transition:.2s;cursor:pointer}
     .btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
     .btn:hover{transform:translateY(-1px)}
 
+    /* Secciones / tarjetas / grillas */
     .section{padding:28px 0}
     .card{background:var(--card);border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:20px}
     .grid{display:grid;gap:16px}
-    @media(min-width:800px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)} }
+    @media(min-width:800px){
+      .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+      .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+      .grid.cols-1{grid-template-columns:1fr}
+    }
 
-    .amenities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-    @media(min-width:600px){.amenities{grid-template-columns:repeat(3,1fr)}}
-    .amenity{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:12px;padding:10px;border:1px solid #eee}
+    /* Amenities */
+    .amenities{
+      display:grid;
+      gap:10px;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .amenity{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:12px;padding:12px;border:1px solid #eee}
     .amenity .icon{font-size:20px}
 
-    /* Galería */
-    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    @media(min-width:900px){.gallery{grid-template-columns:repeat(4,1fr)}}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;border:1px solid #eee}
-
-    /* Lightbox simple */
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50}
-    .lightbox img{max-width:92vw;max-height:86vh;border-radius:12px}
-    .lightbox.active{display:flex}
-
-    iframe.map{width:100%;height:360px;border:0;border-radius:14px}
-
-    footer{padding:32px 20px;text-align:center;color:#666}
-    .note{font-size:13px;color:#666}
-
-    /* Barra fija de acción en mobile */
-    .cta-fixed {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      background: var(--brand);
-      padding: 10px;
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      z-index: 60;
-    }
-    .cta-fixed a {
-      background: #fff;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-weight: 700;
-    }
-    @media (min-width: 800px) {
-    .cta-fixed { display: none }
-    }
-
-    /* Hace que las fotos extra tengan el mismo layout que la galería */
-    .extra-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    @media (min-width: 900px) {
-    .extra-gallery {
-      grid-template-columns: repeat(4, 1fr);
-    }
-      /* Grid de galería uniforme */
+    /* ========== Galería (final) ========== */
     .gallery{
       display:grid;
       gap:10px;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(2, minmax(0,1fr));
     }
     @media (min-width:900px){
-      .gallery{ grid-template-columns:repeat(4,1fr); }
+      .gallery{ grid-template-columns:repeat(4, minmax(0,1fr)); }
     }
-    
-    /* Thumbnails prolijas */
     .gallery img{
       width:100%;
-      height:200px;      /* 180/200/220 según prefieras */
+      height:180px;
       object-fit:cover;
       display:block;
       border-radius:12px;
       border:1px solid #eee;
+      cursor:pointer;
     }
-
-    /* Ocultas por defecto */
+    @media (max-width:480px){ .gallery img{ height:140px; } }
+    @media (min-width:900px){ .gallery img{ height:220px; } }
     .hidden{ display:none !important; }
+    /* Botón "ver más" */
+    .show-more-btn{ background:var(--brand); color:#fff; border:none; font-weight:600; padding:12px 22px; border-radius:12px; cursor:pointer; transition:.3s }
+    .show-more-btn:hover{ background:var(--brand-2); transform:translateY(-2px) }
+    /* ========== /Galería ========== */
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50}
+    .lightbox img{max-width:92vw;max-height:86vh;border-radius:12px}
+    .lightbox.active{display:flex}
+
+    /* Mapa */
+    iframe.map{width:100%;height:360px;border:0;border-radius:14px}
+
+    /* Footer */
+    footer{padding:32px 20px;text-align:center;color:#666}
+    .note{font-size:13px;color:#666}
+
+    /* CTA fija (mobile) */
+    .cta-fixed{
+      position:fixed; left:0; right:0; bottom:0;
+      background:var(--brand); padding:10px; display:flex; gap:8px; justify-content:center; z-index:60;
+    }
+    .cta-fixed a{ background:#fff; border-radius:12px; padding:10px 14px; font-weight:700 }
+    @media (min-width:800px){ .cta-fixed{ display:none } }
   </style>
 </head>
 <body>
@@ -124,13 +119,12 @@
       <div class="grid cols-2">
         <div class="card">
           <h2>La cabaña</h2>
-          <p>Arquitectura en madera con detalles de diseño. Ambientes cálidos, equipamiento completo y entorno natural único, a minutos de Lago Hermoso.</p>
+          <p>Arquitectura en madera con detalles de diseño. Ambientes cálidos, equipamiento completo y entorno natural único, a minutos de Lago Hermoso (Camino Siete Lagos). Ideal para desconectarse y despertar rodeados de bosque.</p>
           <ul>
             <li>2 dormitorios · 1 baño</li>
             <li>Capacidad para 6 personas</li>
             <li>Living-comedor con cocina integrada</li>
-            <li>Ropa blanca</li>
-            <li>Cortinas roller blackout</li>
+            <li>Cortinas roller blackout en todos los cuartos</li>
           </ul>
         </div>
         <div class="card">
@@ -139,7 +133,7 @@
             <div class="amenity"><span class="icon">🔥</span><div>Calefacción central</div></div>
             <div class="amenity"><span class="icon">🪵</span><div>Estufa Tromen</div></div>
             <div class="amenity"><span class="icon">☀️</span><div>Energía solar</div></div>
-            <div class="amenity"><span class="icon">📶</span><div>Internet Wi‑Fi</div></div>
+            <div class="amenity"><span class="icon">📶</span><div>Internet Wi-Fi</div></div>
             <div class="amenity"><span class="icon">💡</span><div>Luz incluida</div></div>
             <div class="amenity"><span class="icon">🛁</span><div>Baño completo</div></div>
             <div class="amenity"><span class="icon">🧺</span><div>Ropa blanca</div></div>
@@ -148,14 +142,14 @@
         </div>
       </div>
     </section>
-    <!-- Galería -->
+
     <!-- Galería -->
     <section id="galeria" class="section">
       <h2>Galería</h2>
       <p class="note">Hacé clic en una imagen para ampliarla.</p>
-    
+
       <div class="gallery" id="gallery">
-        <!-- Fotos visibles siempre (12 primeras) -->
+        <!-- visibles (12) -->
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.09 AM.jpeg" alt="Living principal" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.05 AM.jpeg" alt="Vista interior" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.04 AM (4).jpeg" alt="Cocina equipada" />
@@ -168,8 +162,8 @@
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM (2).jpeg" alt="Vista interior cálida" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM (1).jpeg" alt="Detalles de interior" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM.jpeg" alt="Ventanales al bosque" />
-    
-        <!-- Fotos extra (ocultas por defecto) -->
+
+        <!-- extra (ocultas por defecto) -->
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (2).jpeg" alt="Ambiente luminoso" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (1).jpeg" alt="Habitación con vista" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM.jpeg" alt="Living comedor" />
@@ -193,8 +187,6 @@
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM (1).jpeg" alt="Pasillo interior" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM.jpeg" alt="Living rústico moderno" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.56 AM.jpeg" alt="Exterior con vista" />
-    
-        <!-- 6/10 (extra) -->
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (2).jpeg" alt="Exterior con iluminación" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (1).jpeg" alt="Vista de noche" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (4).jpeg" alt="Exterior con deck" />
@@ -205,31 +197,31 @@
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM (1).jpeg" alt="Exterior desde el bosque" />
         <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM.jpeg" alt="Fachada iluminada" />
       </div>
-    
+
       <div style="text-align:center; margin-top:20px;">
         <button id="showMore" class="btn show-more-btn">Ver más fotos</button>
       </div>
-    
+
       <div class="lightbox" id="lightbox"><img alt="preview"/></div>
     </section>
 
+    <!-- Script del botón de galería -->
     <script>
-    // Mostrar / ocultar fotos "extra"
-    const btn = document.getElementById('showMore');
-    const extras = document.querySelectorAll('#gallery .extra');
-  
-    btn.addEventListener('click', () => {
-      const showing = btn.getAttribute('data-open') === '1';
-      extras.forEach(img => img.classList.toggle('hidden', showing));
-      btn.textContent = showing ? 'Ver más fotos' : 'Ver menos fotos';
-      btn.setAttribute('data-open', showing ? '0' : '1');
-  
-      if (showing) {
-        // al cerrar, volvemos al comienzo de la galería
-          window.scrollTo({ top: document.getElementById('gallery').offsetTop - 100, behavior: 'smooth' });
-        }
-      });
+      const btn = document.getElementById('showMore');
+      const extras = document.querySelectorAll('#gallery .extra');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const abierto = btn.getAttribute('data-open') === '1';
+          extras.forEach(img => img.classList.toggle('hidden', abierto));
+          btn.textContent = abierto ? 'Ver más fotos' : 'Ver menos fotos';
+          btn.setAttribute('data-open', abierto ? '0' : '1');
+          if (abierto) {
+            window.scrollTo({ top: document.getElementById('gallery').offsetTop - 100, behavior: 'smooth' });
+          }
+        });
+      }
     </script>
+
     <!-- Disponibilidad -->
     <section id="disponibilidad" class="section">
       <div class="grid cols-1">
@@ -251,12 +243,7 @@
         <iframe 
           class="map"
           src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1695.7752980010368!2d-71.45514431552334!3d-40.37924763944046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDIyJzQ1LjMiUyA3McKwMjcnMTUuNCJX!5e1!3m2!1ses!2sar!4v1760888837192!5m2!1ses!2sar" 
-          width="100%" 
-          height="400" 
-          style="border:0; border-radius:14px;"
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
+          width="100%" height="400" style="border:0; border-radius:14px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         <p class="note"><a href="https://maps.app.goo.gl/juPcrsBRiJkdFRBM6" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
       </div>
@@ -282,12 +269,12 @@
               <span id="formMsg" class="note"></span>
             </div>
           </form>
-          <p class="note">También podés escribir a <a href="mailto:gandaragustin@gmail.com">reservas@tucabana.com</a>.</p>
+          <p class="note">También podés escribir a <a href="mailto:gandaragustin@gmail.com">gandaragustin@gmail.com</a>.</p>
         </div>
         <div class="card">
           <h2>Tarifas & estancias</h2>
           <ul>
-            <li>Temporada baja: desde — consultar</li>
+            <li>Temporada baja: consultar</li>
             <li>Temporada alta y feriados: consultar</li>
             <li>Estadía mínima sugerida: 2 noches</li>
           </ul>
@@ -307,12 +294,10 @@
   <!-- CTA fija (mobile) -->
   <div class="cta-fixed">
     <a href="#contacto">Consultar</a>
-    <a href="https://wa.me/5491158897335?text=Consulta%20Caba%C3%B1a%20Lago%20Hermoso"
-      target="_blank"
-      rel="noopener">WhatsApp</a>
+    <a href="https://wa.me/5491158897335?text=Consulta%20Caba%C3%B1a%20Lago%20Hermoso" target="_blank" rel="noopener">WhatsApp</a>
   </div>
 
-  <!-- JSON-LD para SEO (VacationRental) -->
+  <!-- JSON-LD SEO -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -324,29 +309,28 @@
       {"@type":"LocationFeatureSpecification","name":"Calefacción central","value":true},
       {"@type":"LocationFeatureSpecification","name":"Estufa Tromen","value":true},
       {"@type":"LocationFeatureSpecification","name":"Energía solar","value":true},
-      {"@type":"LocationFeatureSpecification","name":"Internet Wi‑Fi","value":true}
+      {"@type":"LocationFeatureSpecification","name":"Internet Wi-Fi","value":true}
     ],
     "numberOfRooms":3,
     "petsAllowed":"ByAgreement"
   }
   </script>
 
+  <!-- Utilidades (año + lightbox + form) -->
   <script>
     // Año en footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ----- Lightbox simple para la galería -----
-    const gallery = document.getElementById('gallery');
+    // Lightbox
+    const galleryEl = document.getElementById('gallery');
     const lightbox = document.getElementById('lightbox');
     const lightImg = lightbox.querySelector('img');
-    gallery.querySelectorAll('img').forEach(img => {
+    galleryEl.querySelectorAll('img').forEach(img => {
       img.addEventListener('click', () => { lightImg.src = img.src; lightbox.classList.add('active'); });
     });
     lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 
-    // (El calendario interno ha sido removido para evitar duplicados; solo queda Google Calendar embed)
-
-    // ----- Envío de formulario (mensaje s/éxito) -----
+    // Envío de formulario (feedback suave)
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMsg');
     form.addEventListener('submit', async (e) => {
@@ -354,15 +338,9 @@
       const fd = new FormData(form);
       try{
         const r = await fetch(form.action, { method:'POST', body: fd, headers: { 'Accept':'application/json' } });
-        if(r.ok){
-          form.reset();
-          formMsg.textContent = '¡Gracias! Te responderemos a la brevedad.';
-        } else {
-          formMsg.textContent = 'No se pudo enviar. Escribinos a reservas@tucabana.com';
-        }
-      }catch(err){
-        formMsg.textContent = 'Error de red. Probá de nuevo o escribinos por email.';
-      }
+        if(r.ok){ form.reset(); formMsg.textContent = '¡Gracias! Te responderemos a la brevedad.'; }
+        else{ formMsg.textContent = 'No se pudo enviar. Escribinos a gandaragustin@gmail.com'; }
+      }catch(err){ formMsg.textContent = 'Error de red. Probá de nuevo o escribinos por email.'; }
     });
   </script>
 </body>
