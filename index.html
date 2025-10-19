@@ -69,6 +69,19 @@
     @media (min-width: 800px) {
     .cta-fixed { display: none }
     }
+
+    /* Hace que las fotos extra tengan el mismo layout que la galería */
+    .extra-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 900px) {
+    .extra-gallery {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
   </style>
 </head>
 <body>
