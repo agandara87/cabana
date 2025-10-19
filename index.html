@@ -81,7 +81,28 @@
     .extra-gallery {
       grid-template-columns: repeat(4, 1fr);
     }
-  }
+      /* Grid de galería uniforme */
+    .gallery{
+      display:grid;
+      gap:10px;
+      grid-template-columns:repeat(2,1fr);
+    }
+    @media (min-width:900px){
+      .gallery{ grid-template-columns:repeat(4,1fr); }
+    }
+    
+    /* Thumbnails prolijas */
+    .gallery img{
+      width:100%;
+      height:200px;      /* 180/200/220 según prefieras */
+      object-fit:cover;
+      display:block;
+      border-radius:12px;
+      border:1px solid #eee;
+    }
+
+    /* Ocultas por defecto */
+    .hidden{ display:none !important; }
   </style>
 </head>
 <body>
@@ -126,11 +147,13 @@
       </div>
     </section>
     <!-- Galería -->
+    <!-- Galería -->
     <section id="galeria" class="section">
       <h2>Galería</h2>
       <p class="note">Hacé clic en una imagen para ampliarla.</p>
+    
       <div class="gallery" id="gallery">
-      <!-- Fotos principales (se muestran siempre) -->
+        <!-- Fotos visibles siempre (12 primeras) -->
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.09 AM.jpeg" alt="Living principal" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.05 AM.jpeg" alt="Vista interior" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.04 AM (4).jpeg" alt="Cocina equipada" />
@@ -143,86 +166,68 @@
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM (2).jpeg" alt="Vista interior cálida" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM (1).jpeg" alt="Detalles de interior" />
         <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.03 AM.jpeg" alt="Ventanales al bosque" />
-
-    <!-- Fotos adicionales ocultas -->
-        <div id="more-photos" class="gallery extra-gallery" style="display:none">
-        <!-- Resto del 11/10 -->
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (2).jpeg" alt="Ambiente luminoso" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (1).jpeg" alt="Habitación con vista" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM.jpeg" alt="Living comedor" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (3).jpeg" alt="Baño moderno" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (2).jpeg" alt="Cocina con barra" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (1).jpeg" alt="Comedor amplio" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM.jpeg" alt="Vista interior cálida" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM (2).jpeg" alt="Vista al exterior" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM (1).jpeg" alt="Habitación doble" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM.jpeg" alt="Cocina completa" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (4).jpeg" alt="Vista general del interior" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (3).jpeg" alt="Exterior de la cabaña" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (2).jpeg" alt="Ambiente interior" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (1).jpeg" alt="Living rústico" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM.jpeg" alt="Cabaña vista frontal" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (3).jpeg" alt="Ventanas al bosque" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (2).jpeg" alt="Cocina y comedor" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (1).jpeg" alt="Habitación luminosa" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM.jpeg" alt="Detalles del interior" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM (2).jpeg" alt="Baño con ducha" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM (1).jpeg" alt="Pasillo interior" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM.jpeg" alt="Living rústico moderno" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.56 AM.jpeg" alt="Exterior con vista" />
-
-          <!-- Fotos del 6/10 -->
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (2).jpeg" alt="Exterior con iluminación" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (1).jpeg" alt="Vista de noche" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (4).jpeg" alt="Exterior con deck" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (3).jpeg" alt="Cabaña iluminada" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (2).jpeg" alt="Vista nocturna" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (1).jpeg" alt="Fachada con luces" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM.jpeg" alt="Exterior principal" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM (1).jpeg" alt="Exterior desde el bosque" />
-          <img src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM.jpeg" alt="Fachada iluminada" />
-        </div>
+    
+        <!-- Fotos extra (ocultas por defecto) -->
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (2).jpeg" alt="Ambiente luminoso" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM (1).jpeg" alt="Habitación con vista" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.02 AM.jpeg" alt="Living comedor" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (3).jpeg" alt="Baño moderno" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (2).jpeg" alt="Cocina con barra" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM (1).jpeg" alt="Comedor amplio" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.01 AM.jpeg" alt="Vista interior cálida" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM (2).jpeg" alt="Vista al exterior" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM (1).jpeg" alt="Habitación doble" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.14.00 AM.jpeg" alt="Cocina completa" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (4).jpeg" alt="Vista general del interior" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (3).jpeg" alt="Exterior de la cabaña" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (2).jpeg" alt="Ambiente interior" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM (1).jpeg" alt="Living rústico" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.59 AM.jpeg" alt="Cabaña vista frontal" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (3).jpeg" alt="Ventanas al bosque" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (2).jpeg" alt="Cocina y comedor" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM (1).jpeg" alt="Habitación luminosa" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.58 AM.jpeg" alt="Detalles del interior" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM (2).jpeg" alt="Baño con ducha" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM (1).jpeg" alt="Pasillo interior" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.57 AM.jpeg" alt="Living rústico moderno" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-11 at 11.13.56 AM.jpeg" alt="Exterior con vista" />
+    
+        <!-- 6/10 (extra) -->
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (2).jpeg" alt="Exterior con iluminación" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.18 PM (1).jpeg" alt="Vista de noche" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (4).jpeg" alt="Exterior con deck" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (3).jpeg" alt="Cabaña iluminada" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (2).jpeg" alt="Vista nocturna" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM (1).jpeg" alt="Fachada con luces" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.17 PM.jpeg" alt="Exterior principal" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM (1).jpeg" alt="Exterior desde el bosque" />
+        <img class="extra hidden" src="assets/fotos/WhatsApp Image 2025-10-06 at 9.14.16 PM.jpeg" alt="Fachada iluminada" />
       </div>
-    <!-- Botón -->
-    <div style="text-align:center; margin-top:20px;">
-      <button id="showMore" class="btn show-more-btn">Ver más fotos</button>
-    </div>
-    <div class="lightbox" id="lightbox"><img alt="preview"/></div>
-    <style>
-      /* Botón personalizado */
-      .show-more-btn {
-        background: var(--brand);
-        color: #fff;
-        border: none;
-        font-weight: 600;
-        padding: 12px 22px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: 0.3s ease;
-      }
-      .show-more-btn:hover {
-        background: var(--brand-2);
-        transform: translateY(-2px);
-      }
-    </style>
+    
+      <div style="text-align:center; margin-top:20px;">
+        <button id="showMore" class="btn show-more-btn">Ver más fotos</button>
+      </div>
+    
+      <div class="lightbox" id="lightbox"><img alt="preview"/></div>
+    </section>
 
     <script>
-      // Mostrar / ocultar fotos extra
-      document.getElementById('showMore').addEventListener('click', function() {
-        const more = document.getElementById('more-photos');
-        if (more.style.display === 'none') {
-          more.style.display = 'grid';
-          this.textContent = 'Ver menos fotos';
-        } else {
-          more.style.display = 'none';
-          this.textContent = 'Ver más fotos';
+    // Mostrar / ocultar fotos "extra"
+    const btn = document.getElementById('showMore');
+    const extras = document.querySelectorAll('#gallery .extra');
+  
+    btn.addEventListener('click', () => {
+      const showing = btn.getAttribute('data-open') === '1';
+      extras.forEach(img => img.classList.toggle('hidden', showing));
+      btn.textContent = showing ? 'Ver más fotos' : 'Ver menos fotos';
+      btn.setAttribute('data-open', showing ? '0' : '1');
+  
+      if (showing) {
+        // al cerrar, volvemos al comienzo de la galería
           window.scrollTo({ top: document.getElementById('gallery').offsetTop - 100, behavior: 'smooth' });
         }
       });
     </script>
-  </section>
-
-
     <!-- Disponibilidad -->
     <section id="disponibilidad" class="section">
       <div class="grid cols-1">
