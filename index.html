@@ -50,9 +50,25 @@
     .note{font-size:13px;color:#666}
 
     /* Barra fija de acción en mobile */
-    .cta-fixed{position:fixed;left:0;right:0;bottom:0;background:var(--brand);padding:10px;display:flex;gap:8px;justify-content:center;z-index:60}
-    .cta-fixed a{background:#fff;border-radius:12px;padding:10px 14px;font-weight:700}
-    @media(min-width:800px){.cta-fixed{display:none}}
+    .cta-fixed {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: var(--brand);
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      z-index: 60;
+    }
+    .cta-fixed a {
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+    @media (min-width: 800px) {
+    .cta-fixed { display: none }
+    }
   </style>
 </head>
 <body>
@@ -203,7 +219,9 @@
   <!-- CTA fija (mobile) -->
   <div class="cta-fixed">
     <a href="#contacto">Consultar</a>
-    <a href="https://wa.me/5491158897335?text=Consulta%20Caba%C3%B1a%20Lago%20Hermoso" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://wa.me/5491158897335?text=Consulta%20Caba%C3%B1a%20Lago%20Hermoso"
+      target="_blank"
+      rel="noopener">WhatsApp</a>
   </div>
 
   <!-- JSON-LD para SEO (VacationRental) -->
