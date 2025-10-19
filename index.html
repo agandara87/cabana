@@ -1,375 +1,342 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cabaña Lago Hermoso · Neuquén</title>
-  <meta name="description" content="Cabaña de diseño en Lago Hermoso, Neuquén. 2 cuartos, 1 baño. Hasta 6 personas. Calefacción central, estufa Tromen, energía solar. Servicios incluidos: luz, gas e internet." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cabaña Lago Hermoso — Neuquén</title>
+  <meta name="description" content="Cabaña de diseño en Lago Hermoso, Neuquén. 2 cuartos, 1 baño, hasta 6 personas. Calefacción central, estufa Tromen, energía solar. Luz, gas e internet incluidos."/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root { --brand:#0ea5e9; }
-    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
-    .hero-gradient { background: radial-gradient(1000px 600px at 10% -10%, rgba(14,165,233,0.25), transparent),
-                              radial-gradient(800px 500px at 100% 0%, rgba(2,132,199,0.20), transparent); }
-    #lightbox { backdrop-filter: blur(2px); }
-    details#tests summary { cursor: pointer; }
-    .test-pass{color:#16a34a}
-    .test-fail{color:#dc2626}
+    :root { --bg:#f6f5f3; --text:#1c1c1c; --brand:#5c3d2e; --brand-2:#936b5a; --card:#ffffff; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    a{color:var(--brand);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    header.hero{position:relative;background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35)), url('https://images.unsplash.com/photo-1600585153490-76fb20a32601?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat; color:#fff; min-height:62vh; display:flex; align-items:center}
+    .hero-content{padding:32px}
+    .badge{display:inline-block;background:rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px;backdrop-filter: blur(6px);}
+    h1{font-size:40px;margin:10px 0 8px}
+    .sub{opacity:.95;font-size:18px}
+    .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{background:#fff;color:#000;padding:12px 16px;border-radius:12px;font-weight:600;border:2px solid transparent;transition:.2s}
+    .btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .section{padding:28px 0}
+    .card{background:var(--card);border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:20px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:800px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)} }
+
+    .amenities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    @media(min-width:600px){.amenities{grid-template-columns:repeat(3,1fr)}}
+    .amenity{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:12px;padding:10px;border:1px solid #eee}
+    .amenity .icon{font-size:20px}
+
+    /* Galería */
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    @media(min-width:900px){.gallery{grid-template-columns:repeat(4,1fr)}}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;border:1px solid #eee}
+
+    /* Lightbox simple */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50}
+    .lightbox img{max-width:92vw;max-height:86vh;border-radius:12px}
+    .lightbox.active{display:flex}
+
+    /* Calendario */
+    .calendar{--accent: var(--brand); background:#fff;border-radius:16px;padding:16px;border:1px solid #eee}
+    .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .dow{font-weight:700;text-align:center;font-size:12px;opacity:.8}
+    .day{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid #eee;background:#fafafa;font-weight:600;cursor:pointer}
+    .day.muted{opacity:.45}
+    .day.unavailable{background:#ffe9e7;border-color:#ffd3ce;color:#9a4a40;cursor:not-allowed}
+    .day.selected{outline:3px solid var(--brand-2)}
+
+    iframe.map{width:100%;height:360px;border:0;border-radius:14px}
+
+    footer{padding:32px 20px;text-align:center;color:#666}
+    .note{font-size:13px;color:#666}
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <!-- Header -->
-  <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-slate-200/60">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-sky-100">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l7 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7l7-5z"/></svg>
-        </span>
-        <span class="font-semibold">Cabaña Lago Hermoso</span>
+<body>
+  <header class="hero">
+    <div class="container hero-content">
+      <span class="badge">Alquiler temporario · Lago Hermoso</span>
+      <h1>Cabaña de diseño en Lago Hermoso, Neuquén</h1>
+      <p class="sub">2 cuartos · 1 baño · hasta 6 huéspedes · calefacción central y estufa Tromen · energía solar · luz, gas e internet incluidos</p>
+      <div class="cta">
+        <a class="btn" href="#contacto">Consultar disponibilidad</a>
+        <a class="btn secondary" href="#galeria">Ver fotos</a>
       </div>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#galeria" class="hover:text-sky-600">Galería</a>
-        <a href="#detalles" class="hover:text-sky-600">Detalles</a>
-        <a href="#ubicacion" class="hover:text-sky-600">Ubicación</a>
-        <a href="#disponibilidad" class="hover:text-sky-600">Disponibilidad</a>
-        <a href="#contacto" class="hover:text-sky-600">Contacto</a>
-      </nav>
-      <a href="https://wa.me/54911XXXXYYYY?text=Hola!%20Quiero%20alquilar%20la%20caba%C3%B1a%20en%20Lago%20Hermoso" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.16 6.42 2.16 11.87c0 2.09.56 4.02 1.64 5.75L2 22l4.52-1.77a9.86 9.86 0 0 0 5.52 1.64c5.46 0 9.88-4.42 9.88-9.87C21.92 6.42 17.5 2 12.04 2zM12 20.2c-1.84 0-3.55-.54-4.98-1.47l-.36-.23-2.68 1.05.51-2.57-.25-.39a8.16 8.16 0 0 1-1.3-4.32C2.94 7.62 7.06 3.5 12 3.5s9.06 4.12 9.06 9.06S16.94 20.2 12 20.2zm5.12-6.65c-.28-.14-1.64-.8-1.89-.89-.25-.09-.43-.14-.61.14-.18.28-.7.89-.86 1.07-.16.18-.32.2-.6.07-.28-.14-1.19-.44-2.26-1.4-.84-.75-1.4-1.67-1.56-1.95-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.47.09-.18.04-.35-.02-.48-.07-.14-.61-1.47-.85-2.01-.22-.52-.44-.45-.61-.46h-.52c-.18 0-.48.07-.73.35-.25.28-.96.94-.96 2.28 0 1.33.98 2.62 1.12 2.8.14.18 1.93 2.94 4.67 4.01.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.07 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.18-.53-.32z"/></svg>
-        WhatsApp
-      </a>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero-gradient">
-    <div class="max-w-7xl mx-auto px-4 py-12 md:py-16 lg:py-20 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Cabaña de diseño en <span class="text-sky-600">Lago Hermoso</span>, Neuquén</h1>
-        <p class="mt-4 text-slate-700 text-lg">Cabaña 100% de madera, cálida y luminosa, con arquitectura moderna. Ideal para familias o grupos.</p>
-        <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-800">
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> 2 cuartos • 1 baño</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> Capacidad hasta 6 personas</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> Calefacción central + estufa Tromen</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> Electricidad solar</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> Luz, gas e internet incluidos</li>
-        </ul>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#contacto" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow">Consultar</a>
-          <a href="#galeria" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 hover:bg-white/70 font-semibold">Ver fotos</a>
+  <main class="container">
+    <!-- Resumen / Amenidades -->
+    <section class="section">
+      <div class="grid cols-3">
+        <div class="card">
+          <h2>La cabaña</h2>
+          <p>Arquitectura en madera con detalles de diseño. Ambientes cálidos, equipamiento completo y entorno natural único, a minutos de Lago Hermoso.</p>
+          <ul>
+            <li>2 dormitorios · 1 baño</li>
+            <li>Capacidad para 6 personas</li>
+            <li>Living-comedor con cocina integrada</li>
+          </ul>
         </div>
-      </div>
-      <div class="grid grid-cols-2 gap-3">
-        <img src="data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1200&quot; height=&quot;800&quot;><defs><linearGradient id=&quot;g&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;1&quot; y2=&quot;1&quot;><stop stop-color=&quot;%230ea5e9&quot; offset=&quot;0&quot;/><stop stop-color=&quot;%230289ca&quot; offset=&quot;1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23g)&quot;/><text x=&quot;50&quot; y=&quot;120&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;48&quot; fill=&quot;white&quot;>Cabaña Lago Hermoso — Neuquén</text><text x=&quot;50&quot; y=&quot;190&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;28&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;>Agregá tus fotos para verlas acá</text></svg>" alt="Foto cabaña" class="rounded-2xl shadow object-cover h-40 md:h-56 w-full"/>
-        <img src="data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1200&quot; height=&quot;800&quot;><defs><linearGradient id=&quot;g2&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;1&quot; y2=&quot;1&quot;><stop stop-color=&quot;%2364d3ff&quot; offset=&quot;0&quot;/><stop stop-color=&quot;%230ea5e9&quot; offset=&quot;1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23g2)&quot;/><text x=&quot;50&quot; y=&quot;120&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;48&quot; fill=&quot;white&quot;>Galería</text><text x=&quot;50&quot; y=&quot;190&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;28&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;>Vista previa en el chat</text></svg>" alt="Foto cabaña" class="rounded-2xl shadow object-cover h-40 md:h-56 w-full"/>
-        <img src="data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;1200&quot; height=&quot;800&quot;><defs><linearGradient id=&quot;g3&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;1&quot; y2=&quot;1&quot;><stop stop-color=&quot;%230289ca&quot; offset=&quot;0&quot;/><stop stop-color=&quot;%231b4b66&quot; offset=&quot;1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23g3)&quot;/><text x=&quot;50&quot; y=&quot;120&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;48&quot; fill=&quot;white&quot;>Fotos</text><text x=&quot;50&quot; y=&quot;190&quot; font-family=&quot;Inter,Arial&quot; font-size=&quot;28&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;>Se verán aquí</text></svg>" alt="Interior cabaña" class="rounded-2xl shadow object-cover h-40 md:h-56 w-full md:col-span-2"/>
-      </div>
-    </div>
-  </section>
-
-  <!-- Detalles rápidos -->
-  <section id="detalles" class="bg-white border-y border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-      <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-        <h3 class="font-semibold text-lg">Comodidades</h3>
-        <ul class="mt-3 space-y-2 text-slate-700">
-          <li>• 2 dormitorios</li>
-          <li>• 1 baño completo</li>
-          <li>• Cocina equipada</li>
-          <li>• Living comedor integrado</li>
-          <li>• Ropa blanca opcional</li>
-        </ul>
-      </div>
-      <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-        <h3 class="font-semibold text-lg">Calefacción & energía</h3>
-        <ul class="mt-3 space-y-2 text-slate-700">
-          <li>• Calefacción central</li>
-          <li>• Estufa Tromen</li>
-          <li>• Electricidad por paneles solares</li>
-          <li>• Aislación térmica premium</li>
-        </ul>
-      </div>
-      <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
-        <h3 class="font-semibold text-lg">Incluido</h3>
-        <ul class="mt-3 space-y-2 text-slate-700">
-          <li>• Luz, gas e internet</li>
-          <li>• Estacionamiento</li>
-          <li>• Check-in remoto</li>
-          <li>• Recomendaciones de paseos</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Galería -->
-  <section id="galeria" class="max-w-7xl mx-auto px-4 py-12">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="text-2xl md:text-3xl font-bold">Galería</h2>
-    </div>
-    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4" id="gallery"></div>
-  </section>
-
-  <!-- Ubicación -->
-  <section id="ubicacion" class="bg-white border-y border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold">Ubicación</h2>
-        <p class="mt-3 text-slate-700">Lago Hermoso, Parque Nacional Lanín, Provincia de Neuquén.</p>
-        <ul class="mt-4 space-y-1 text-slate-700">
-          <li>• A minutos de la Ruta 40</li>
-          <li>• Cercano a San Martín de los Andes</li>
-          <li>• Actividades: trekking, pesca, kayak, ski</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl overflow-hidden border border-slate-200 h-[360px]">
-        <iframe title="Mapa Lago Hermoso" width="100%" height="100%" style="border:0" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Lago%20Hermoso%2C%20Neuqu%C3%A9n&output=embed">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Disponibilidad / Calendario -->
-  <section id="disponibilidad" class="max-w-7xl mx-auto px-4 py-12">
-    <h2 class="text-2xl md:text-3xl font-bold mb-4">Disponibilidad</h2>
-    <p class="text-slate-700 mb-6">Seleccioná un mes para ver días disponibles. Los días "no disponibles" aparecen en rojo. (Se puede editar la variable <code>bookedDates</code> para bloquear fechas.)</p>
-    <div class="flex flex-wrap items-center gap-3 mb-4">
-      <label class="text-sm">Mes:</label>
-      <select id="monthSelect" class="rounded-xl border-slate-300"></select>
-      <label class="text-sm">Año:</label>
-      <select id="yearSelect" class="rounded-xl border-slate-300"></select>
-    </div>
-    <div id="calendar" class="grid grid-cols-7 gap-1 text-center"></div>
-    <p class="mt-3 text-sm text-slate-600">Consejo: hacé click en un día para alternar disponible/no disponible localmente (solo vista previa).</p>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto" class="bg-white border-y border-slate-200/80">
-    <div class="max-w-3xl mx-auto px-4 py-12">
-      <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
-      <p class="mt-2 text-slate-700">Consultas y reservas. Contanos tus fechas, cantidad de personas (máx. 6) y cualquier consulta.</p>
-      <form class="mt-6 space-y-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm" onsubmit="return handleSubmit(event)">
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Nombre</label>
-            <input required type="text" name="nombre" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Email</label>
-            <input required type="email" name="email" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
+        <div class="card">
+          <h2>Servicios incluidos</h2>
+          <div class="amenities">
+            <div class="amenity"><span class="icon">🔥</span><div>Calefacción central</div></div>
+            <div class="amenity"><span class="icon">🪵</span><div>Estufa Tromen</div></div>
+            <div class="amenity"><span class="icon">☀️</span><div>Energía solar</div></div>
+            <div class="amenity"><span class="icon">📶</span><div>Internet Wi‑Fi</div></div>
+            <div class="amenity"><span class="icon">💡</span><div>Luz incluida</div></div>
+            <div class="amenity"><span class="icon">🛁</span><div>Baño completo</div></div>
           </div>
         </div>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Check-in</label>
-            <input required type="date" name="checkin" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Check-out</label>
-            <input required type="date" name="checkout" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
-          </div>
+        <div class="card">
+          <h2>Reglas & notas</h2>
+          <p>Check‑in 15:00 · Check‑out 11:00. No fumar en interiores. Mascotas consultar.</p>
+          <p class="note">Política de cancelación flexible: reprogramación sujeta a disponibilidad.</p>
         </div>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Personas</label>
-            <input required min="1" max="6" type="number" name="personas" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Teléfono / WhatsApp</label>
-            <input type="tel" name="telefono" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" />
-          </div>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Mensaje</label>
-          <textarea name="mensaje" rows="4" class="mt-1 w-full rounded-xl border-slate-300 focus:border-sky-500 focus:ring-sky-500" placeholder="Consultas adicionales, horarios, etc."></textarea>
-        </div>
-        <div class="flex items-center gap-3">
-          <button type="submit" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow">Enviar consulta</button>
-          <a href="https://wa.me/54911XXXXYYYY?text=Hola!%20Consulta%20por%20Caba%C3%B1a%20Lago%20Hermoso%20(Neuqu%C3%A9n)" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 hover:bg-white/70 font-semibold">WhatsApp</a>
-        </div>
-        <p class="text-xs text-slate-500">* Reemplazá el número de WhatsApp y el email de destino en el código si lo vas a publicar.</p>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 py-8 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-3">
-      <p>© 2025 Cabaña Lago Hermoso · Neuquén</p>
-      <div class="flex items-center gap-4">
-        <a href="#ubicacion" class="hover:text-sky-700">Cómo llegar</a>
-        <a href="#contacto" class="hover:text-sky-700">Reservas</a>
       </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="section">
+      <h2>Galería</h2>
+      <p class="note">Reemplazá las imágenes por las tuyas (GitHub → Upload files). Se admiten JPG/PNG/WebP.</p>
+      <div class="gallery" id="gallery">
+        <!-- Reemplazar src con tus fotos. Puedes agregar o quitar cuantos <img> quieras. -->
+        <img src="https://images.unsplash.com/photo-1523419409543-9a9e9a2d5d66?q=80&w=1200&auto=format&fit=crop" alt="Living en madera"/>
+        <img src="https://images.unsplash.com/photo-1613977257593-9968b1b3a4d3?q=80&w=1200&auto=format&fit=crop" alt="Dormitorio"/>
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1200&auto=format&fit=crop" alt="Cocina equipada"/>
+        <img src="https://images.unsplash.com/photo-1505692794403-34d4982f88aa?q=80&w=1200&auto=format&fit=crop" alt="Exterior y bosque"/>
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1200&auto=format&fit=crop" alt="Detalle de madera"/>
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="Entorno natural"/>
+        <img src="https://images.unsplash.com/photo-1541976076758-347942db1970?q=80&w=1200&auto=format&fit=crop" alt="Comedor"/>
+        <img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?q=80&w=1200&auto=format&fit=crop" alt="Detalle deco"/>
+      </div>
+      <div class="lightbox" id="lightbox"><img alt="preview"/></div>
+    </section>
+
+    <!-- Disponibilidad -->
+    <section id="disponibilidad" class="section">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Calendario de disponibilidad</h2>
+          <p class="note">Los días en <strong>rojo</strong> están ocupados. Editá las fechas abajo en el código (array <code>UNAVAILABLE</code>) o conectá tu Google Calendar.</p>
+          <div class="calendar" id="calendar"></div>
+        </div>
+        <div class="card">
+          <h2>Cómo reservar</h2>
+          <ol>
+            <li>Elegí tus fechas disponibles en el calendario.</li>
+            <li>Completá el formulario de contacto con tus datos.</li>
+            <li>Te responderemos para confirmar y enviar instrucciones de pago.</li>
+          </ol>
+          <p class="note">Tip: si preferís usar Calendly o un Google Calendar público, reemplazá este calendario por un <em>embed</em>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="section">
+      <div class="card">
+        <h2>Ubicación</h2>
+        <p>Lago Hermoso, Neuquén — Patagonia Argentina.</p>
+        <!-- Si tenés el embed exacto de la cabaña, reemplazá el src por el de Google Maps Embed. -->
+        <iframe class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Lago+Hermoso,+Neuqu%C3%A9n&output=embed"></iframe>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Contacto</h2>
+          <form id="contactForm" action="https://formspree.io/f/TU_FORM_ID" method="POST" class="form">
+            <!-- Reemplazá TU_FORM_ID con tu id de Formspree o usa Netlify/FormSubmit. -->
+            <div style="display:grid;gap:10px">
+              <input required name="nombre" placeholder="Nombre y apellido" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+              <input required type="email" name="email" placeholder="Email" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+              <input name="telefono" placeholder="Teléfono (opcional)" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <input type="date" name="checkin" placeholder="Check-in" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+                <input type="date" name="checkout" placeholder="Check-out" style="padding:12px;border-radius:10px;border:1px solid #ddd"/>
+              </div>
+              <textarea name="mensaje" rows="4" placeholder="Mensaje (cant. huéspedes, dudas, etc.)" style="padding:12px;border-radius:10px;border:1px solid #ddd"></textarea>
+              <input type="hidden" name="_subject" value="Consulta Cabaña Lago Hermoso"/>
+              <button class="btn" type="submit">Enviar consulta</button>
+              <span id="formMsg" class="note"></span>
+            </div>
+          </form>
+          <p class="note">También podés escribir a <a href="mailto:reservas@tucabana.com">reservas@tucabana.com</a>.</p>
+        </div>
+        <div class="card">
+          <h2>Tarifas & estancias</h2>
+          <ul>
+            <li>Temporada baja: consultar</li>
+            <li>Temporada alta y feriados: consultar</li>
+            <li>Estadía mínima sugerida: 2 noches</li>
+          </ul>
+          <p class="note">Ofrecemos descuentos por estancias prolongadas y familias. Pedí tu cotización.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> Cabaña Lago Hermoso — Neuquén</div>
+      <div class="note">Sitio estático hospedado en Vercel. Hecho con ❤.</div>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center p-4">
-    <button class="absolute top-4 right-4 text-white text-2xl" onclick="hideLightbox()">✕</button>
-    <img id="lightboxImg" src="" class="max-h-[85vh] max-w-[95vw] rounded-xl shadow-lg" alt=""/>
-  </div>
-
-  <!-- Tests (auto) -->
-  <section class="max-w-7xl mx-auto px-4 py-6">
-    <details id="tests">
-      <summary class="text-sm font-semibold">Ver tests automáticos</summary>
-      <ul id="test-list" class="mt-3 space-y-1 text-sm"></ul>
-    </details>
-  </section>
+  <!-- JSON-LD para SEO (VacationRental) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"VacationRental",
+    "name":"Cabaña Lago Hermoso",
+    "description":"Cabaña de diseño en madera. 2 cuartos, 1 baño, hasta 6 personas. Calefacción central, estufa Tromen, energía solar. Servicios incluidos: luz, gas e internet.",
+    "address": {"@type":"PostalAddress","addressRegion":"Neuquén","addressCountry":"AR"},
+    "amenityFeature":[
+      {"@type":"LocationFeatureSpecification","name":"Calefacción central","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Estufa Tromen","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Energía solar","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Internet Wi‑Fi","value":true}
+    ],
+    "numberOfRooms":3,
+    "petsAllowed":"ByAgreement"
+  }
+  </script>
 
   <script>
-    // ====== Helpers de test ======
-    const tests = [];
-    function tAssert(name, cond){ tests.push({name, pass: !!cond}); }
-    function tRender(){
-      const ul = document.getElementById('test-list');
-      ul.innerHTML = '';
-      tests.forEach(t=>{ const li=document.createElement('li'); li.textContent = (t.pass?'✓ ':'✗ ') + t.name; li.className=t.pass?'test-pass':'test-fail'; ul.appendChild(li); });
-    }
+    // Año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ====== IMÁGENES EMBEBIDAS ======
-    const PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"800\"><rect width=\"100%\" height=\"100%\" fill=\"%23e2e8f0\"/><text x=\"50\" y=\"120\" font-family=\"Inter,Arial\" font-size=\"36\" fill=\"%23364759\">Cargá fotos para ver acá</text></svg>";
-
-    const EMBED_IMGS = [
-      // Estas 3 se cargan en el hero automáticamente
-      "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"800\"><defs><linearGradient id=\"g\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop stop-color=\"%230ea5e9\" offset=\"0\"/><stop stop-color=\"%230289ca\" offset=\"1\"/></linearGradient></defs><rect width=\"100%\" height=\"100%\" fill=\"url(%23g)\"/><text x=\"50\" y=\"120\" font-family=\"Inter,Arial\" font-size=\"48\" fill=\"white\">Cabaña Lago Hermoso — Neuquén</text><text x=\"50\" y=\"190\" font-family=\"Inter,Arial\" font-size=\"28\" fill=\"white\" opacity=\"0.9\">Agregá tus fotos para verlas acá</text></svg>",
-      "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"800\"><defs><linearGradient id=\"g2\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop stop-color=\"%2364d3ff\" offset=\"0\"/><stop stop-color=\"%230ea5e9\" offset=\"1\"/></linearGradient></defs><rect width=\"100%\" height=\"100%\" fill=\"url(%23g2)\"/><text x=\"50\" y=\"120\" font-family=\"Inter,Arial\" font-size=\"48\" fill=\"white\">Galería</text><text x=\"50\" y=\"190\" font-family=\"Inter,Arial\" font-size=\"28\" fill=\"white\" opacity=\"0.9\">Vista previa en el chat</text></svg>",
-      "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"800\"><defs><linearGradient id=\"g3\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop stop-color=\"%230289ca\" offset=\"0\"/><stop stop-color=\"%231b4b66\" offset=\"1\"/></linearGradient></defs><rect width=\"100%\" height=\"100%\" fill=\"url(%23g3)\"/><text x=\"50\" y=\"120\" font-family=\"Inter,Arial\" font-size=\"48\" fill=\"white\">Fotos</text><text x=\"50\" y=\"190\" font-family=\"Inter,Arial\" font-size=\"28\" fill=\"white\" opacity=\"0.9\">Se verán aquí</text></svg>",
-      PLACEHOLDER, PLACEHOLDER, PLACEHOLDER, PLACEHOLDER, PLACEHOLDER
-    ].filter(Boolean);
-
-    // Inyectar en hero (primeras 3 <img> ya existen arriba)
-    document.querySelectorAll('img[src^="data:image/svg+xml"]').forEach((img, idx) => {
-      if(idx < 3) img.src = EMBED_IMGS[idx];
-    });
-
-    // Construir galería
+    // ----- Lightbox simple para la galería -----
     const gallery = document.getElementById('gallery');
-    EMBED_IMGS.forEach((src) => {
-      const a = document.createElement('a');
-      a.href = src; a.setAttribute('data-lightbox', 'gallery'); a.setAttribute('data-src', src);
-      a.className = 'group block relative';
-      a.innerHTML = `<img loading="lazy" src="${src}" alt="Cabaña Lago Hermoso" class="w-full h-48 object-cover rounded-2xl shadow" />`;
-      gallery.appendChild(a);
+    const lightbox = document.getElementById('lightbox');
+    const lightImg = lightbox.querySelector('img');
+    gallery.querySelectorAll('img').forEach(img => {
+      img.addEventListener('click', () => { lightImg.src = img.src; lightbox.classList.add('active'); });
     });
+    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
 
-    // Lightbox simple
-    function showLightbox(src){
-      const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightboxImg');
-      img.src = src; lb.classList.remove('hidden'); lb.classList.add('flex');
-    }
-    function hideLightbox(){
-      const lb = document.getElementById('lightbox');
-      lb.classList.add('hidden'); lb.classList.remove('flex');
-    }
-    document.addEventListener('click', (e)=>{
-      const a = e.target.closest('a[data-lightbox="gallery"]');
-      if(a){ e.preventDefault(); showLightbox(a.getAttribute('data-src')); }
-    });
-
-    // ====== CALENDARIO ======
-    const monthSelect = document.getElementById('monthSelect');
-    const yearSelect = document.getElementById('yearSelect');
-    const calendar = document.getElementById('calendar');
-
-    // Config inicial (podés editar bookedDates con fechas ISO 'YYYY-MM-DD')
-    const bookedDates = new Set([
+    // ----- Calendario de disponibilidad (vanilla JS) -----
+    // Editá estas fechas ocupadas (YYYY-MM-DD). Podés repetir meses/años.
+    const UNAVAILABLE = [
       // Ejemplos:
-      // '2025-12-24', '2025-12-25', '2026-01-10'
-    ]);
+      '2025-12-24','2025-12-25','2025-12-31','2026-01-01',
+      // Agregá tus reservas confirmadas aquí
+    ];
 
-    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    // Normaliza array a set para búsqueda O(1)
+    const unavailableSet = new Set(UNAVAILABLE);
 
-    // Rango de años: actual y siguiente
-    const today = new Date();
-    const startYear = today.getFullYear();
-    const years = [startYear, startYear+1];
+    // Render de calendario por mes
+    const calRoot = document.getElementById('calendar');
+    const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-    months.forEach((m, i)=>{
-      const opt = document.createElement('option'); opt.value = i; opt.textContent = m; monthSelect.appendChild(opt);
-    });
-    years.forEach((y)=>{
-      const opt = document.createElement('option'); opt.value = y; opt.textContent = y; yearSelect.appendChild(opt);
-    });
-    monthSelect.value = today.getMonth();
-    yearSelect.value = today.getFullYear();
+    let view = new Date(); // mes actual
+    view.setDate(1);
 
     function renderCalendar(){
-      const y = parseInt(yearSelect.value); const m = parseInt(monthSelect.value);
-      calendar.innerHTML = '';
-      const headerNames = ['L','M','M','J','V','S','D'];
-      headerNames.forEach(h=>{
+      calRoot.innerHTML = '';
+      const header = document.createElement('div');
+      header.className = 'cal-header';
+
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'btn secondary';
+      prevBtn.textContent = '←';
+      prevBtn.onclick = () => { view.setMonth(view.getMonth()-1); renderCalendar(); };
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'btn secondary';
+      nextBtn.textContent = '→';
+      nextBtn.onclick = () => { view.setMonth(view.getMonth()+1); renderCalendar(); };
+
+      const title = document.createElement('div');
+      title.style.fontWeight = '700';
+      title.textContent = `${MONTHS_ES[view.getMonth()]} ${view.getFullYear()}`;
+
+      header.append(prevBtn,title,nextBtn);
+      calRoot.append(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'cal-grid';
+
+      const DOW = ['L','M','M','J','V','S','D'];
+      DOW.forEach(d => { const el = document.createElement('div'); el.className='dow'; el.textContent=d; grid.append(el); });
+
+      // primer día del mes y offset (lunes como primer día)
+      const firstDay = new Date(view.getFullYear(), view.getMonth(), 1);
+      let start = firstDay.getDay(); // 0=Domingo ... 6=Sábado
+      // Ajuste para que la semana empiece en Lunes
+      start = (start === 0) ? 6 : start - 1;
+
+      const daysInMonth = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+      const prevMonthDays = new Date(view.getFullYear(), view.getMonth(), 0).getDate();
+
+      // Días del mes anterior (muted)
+      for(let i=start-1;i>=0;i--){
         const d = document.createElement('div');
-        d.textContent = h; d.className = 'text-xs text-slate-600 font-semibold py-2';
-        calendar.appendChild(d);
-      });
-      const first = new Date(y, m, 1);
-      const startIdx = (first.getDay()+6)%7; // lunes=0
-      for(let i=0;i<startIdx;i++){ const s=document.createElement('div'); s.className='py-3'; calendar.appendChild(s); }
-      const daysInMonth = new Date(y, m+1, 0).getDate();
-      for(let d=1; d<=daysInMonth; d++){
-        const date = new Date(y, m, d);
-        const iso = date.toISOString().slice(0,10);
-        const booked = bookedDates.has(iso);
-        const cell = document.createElement('button');
-        cell.textContent = d;
-        cell.className = 'py-3 rounded-lg border text-sm ' + (booked ? 'bg-rose-100 border-rose-300 text-rose-800' : 'bg-white border-slate-200 hover:border-sky-300');
-        cell.setAttribute('data-iso', iso);
-        cell.onclick = ()=>{ if(bookedDates.has(iso)) bookedDates.delete(iso); else bookedDates.add(iso); renderCalendar(); };
-        calendar.appendChild(cell);
+        d.className='day muted';
+        d.textContent = (prevMonthDays - i);
+        grid.append(d);
       }
+      // Días del mes actual
+      for(let d=1; d<=daysInMonth; d++){
+        const date = new Date(view.getFullYear(), view.getMonth(), d);
+        const iso = date.toISOString().slice(0,10);
+        const cell = document.createElement('div');
+        cell.className='day';
+        if(unavailableSet.has(iso)) cell.classList.add('unavailable');
+        cell.textContent = d;
+        grid.append(cell);
+      }
+      // Completar con días del próximo mes hasta múltiplo de 7
+      const totalCells = grid.children.length;
+      const remainder = totalCells % 7;
+      if(remainder !== 0){
+        for(let i=1;i<=7-remainder;i++){
+          const d = document.createElement('div');
+          d.className='day muted';
+          d.textContent = i;
+          grid.append(d);
+        }
+      }
+
+      calRoot.append(grid);
     }
-    monthSelect.addEventListener('change', renderCalendar);
-    yearSelect.addEventListener('change', renderCalendar);
+
     renderCalendar();
 
-    // ====== Contacto (mailto simple) ======
-    function handleSubmit(e){
+    // ----- Envío de formulario (mensaje s/éxito) -----
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', async (e) => {
+      // Si usás Formspree, no hace falta JS; esto es para feedback suave.
       e.preventDefault();
-      const data = new FormData(e.target);
-      const subject = encodeURIComponent('Consulta: Cabaña Lago Hermoso');
-      const body = encodeURIComponent(
-        'Nombre: ' + data.get('nombre') + '\n' +
-        'Email: ' + data.get('email') + '\n' +
-        'Teléfono: ' + (data.get('telefono')||'') + '\n' +
-        'Personas: ' + data.get('personas') + '\n' +
-        'Check-in: ' + data.get('checkin') + '\n' +
-        'Check-out: ' + data.get('checkout') + '\n\n' +
-        (data.get('mensaje')||'')
-      );
-      window.location.href = 'mailto:reservas@example.com?subject=' + subject + '&body=' + body;
-      return false;
-    }
-    window.handleSubmit = handleSubmit;
-
-    // ====== TESTS ======
-    // 1) EMBED_IMGS debe parsear sin error y tener al menos 3 elementos
-    tAssert('EMBED_IMGS tiene >= 3 elementos', Array.isArray(EMBED_IMGS) && EMBED_IMGS.length >= 3);
-    // 2) Galería debe poblarse con >= EMBED_IMGS.length imágenes
-    tAssert('Galería poblada', document.getElementById('gallery').children.length >= EMBED_IMGS.length);
-    // 3) Calendario: tiene 7 encabezados + al menos 28 días
-    const calChildren = document.getElementById('calendar').children.length;
-    tAssert('Calendario renderiza', calChildren >= 7 + 28);
-    // 4) Toggle de día cambia estado (simulación en el primer día del mes)
-    (function(){
-      const btn = document.querySelector('#calendar button');
-      if(btn){
-        const iso = btn.getAttribute('data-iso');
-        const wasBooked = bookedDates.has(iso);
-        btn.click();
-        const nowBooked = bookedDates.has(iso);
-        tAssert('Click toggle día cambia estado', wasBooked !== nowBooked);
-      } else {
-        tAssert('Click toggle día cambia estado', false);
+      const fd = new FormData(form);
+      try{
+        const r = await fetch(form.action, { method:'POST', body: fd, headers: { 'Accept':'application/json' } });
+        if(r.ok){
+          form.reset();
+          formMsg.textContent = '¡Gracias! Te responderemos a la brevedad.';
+        } else {
+          formMsg.textContent = 'No se pudo enviar. Escribinos a reservas@tucabana.com';
+        }
+      }catch(err){
+        formMsg.textContent = 'Error de red. Probá de nuevo o escribinos por email.';
       }
-    })();
-
-    tRender();
+    });
   </script>
 </body>
 </html>
